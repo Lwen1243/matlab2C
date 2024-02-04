@@ -15,6 +15,7 @@ void intersect_Row(int a[MAXROW][MAXCOL], int b[MAXROW][MAXCOL], int ii[MAXROW],
         mp[i] = 0 ;
     }
     for(int i = 0; i < MAXROW; i++){
+        if(a[i][0] == -1) break;
         long long res1 = 0;
         long long res2 = 0;
         for(int j = 0; j < MAXCOL; j++){
@@ -27,6 +28,7 @@ void intersect_Row(int a[MAXROW][MAXCOL], int b[MAXROW][MAXCOL], int ii[MAXROW],
 
     // int cnt1 = 0, cnt2 = 0;
     for(int i = 0; i < MAXROW; i++){
+        if(b[i][0] == -1) break;
         long long res1 = 0;
         long long res2 = 0;
         for(int j = 0; j < MAXCOL; j++){
@@ -52,11 +54,25 @@ void intersect_Row(int a[MAXROW][MAXCOL], int b[MAXROW][MAXCOL], int ii[MAXROW],
 
 int main()
 {
-    int A[MAXROW][MAXCOL] = {{2, 2, 2}, {0, 0, 1}, {1, 2, 3}, {1, 1, 1}} ;
-    int B[MAXROW][MAXCOL] = {{1, 2, 3}, {2, 2, 2}, {2, 2, 0}} ;
+    int A[MAXROW][MAXCOL] ;
+    int B[MAXROW][MAXCOL] ;
+    for(int i = 0; i < MAXROW; i++){
+        for(int j = 0; j < MAXCOL; j++){
+            A[i][j] = -1;
+            B[i][j] = -1;
+        }
+    }
+    A[0][0] = 2 , A[0][1] = 2 , A[0][2] = 2 ;
+    A[1][0] = 0, A[1][1] = 0, A[1][2] = 1 ;
+    A[2][0] = 1, A[2][1] = 2, A[2][2] = 3;
+    A[3][0] = 1, A[3][1] = 1, A[3][2] = 1 ;
+    B[0][0] = 1, B[0][1] = 2, B[0][2] = 3;
+    B[1][0] = 2, B[1][1] = 2, B[1][2] = 2 ;
+    B[2][0] = 2, B[2][1] = 2, B[2][2] = 0;
+    
     int ii[11], jj[11] ;
     int cnt1 = 0, cnt2 = 0;
     intersect_Row(A, B, ii, jj, &cnt1, &cnt2) ;
-    for(int i = 0 ; i < cnt1 ; i ++ ) printf("%d\n", ii[i]) ;
+    for(int i = 1 ; i <= cnt1; i ++ ) printf("%d\n", ii[i]) ;
     return 0 ;
 }
