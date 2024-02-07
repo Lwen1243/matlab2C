@@ -122,19 +122,3 @@ void intersect_Row_char(char a[MAXROW][MAXCOL], char b[MAXROW][MAXCOL], int ii[M
 
 
 
-int main()
-{
-    char a[MAXROW][MAXCOL], b[MAXROW][MAXCOL] ;
-    strcpy(a[0], "1314520") ;
-    strcpy(a[1], "1314210") ;
-    strcpy(b[0], "1314210") ;
-    int ii[MAXROW] ;
-    int jj[MAXROW] ;
-    int cnt1, cnt2 ;
-    intersect_Row_char(a, b, ii, jj, &cnt1, &cnt2) ;
-    for(int i = 1; i <= cnt1 ; i ++ )
-    {
-        printf("%d\n", ii[i]) ;
-    }
-    return 0 ;
-}
