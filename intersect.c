@@ -62,17 +62,20 @@ void intersect_Row_char(char a[MAXROW][MAXCOL], char b[MAXROW][MAXCOL], int ii[M
     {
         for(int j = 0 ; j < MAXCOL ; j ++ )
         {
-            if(a[i][j] != 0 )
+            if(a[i][j] >= '0' && a[i][j] <= '9')
             {
                 A[i][j] = a[i][j] ;
             }
             else A[i][j] = -1 ;
-            if(b[i][j] != 0)
+            if(b[i][j] >= '0' && b[i][j] <= '9')
             {
                 B[i][j] = b[i][j] ;
             }
             else B[i][j] = -1 ;
+            
         }
+        // printf("%s\n", a[i]) ;
+        // puts("") ;
     }
     long long mp1[MAXROW] ;
     long long mp2[MAXROW] ;
@@ -88,21 +91,21 @@ void intersect_Row_char(char a[MAXROW][MAXCOL], char b[MAXROW][MAXCOL], int ii[M
         long long res1 = 0;
         long long res2 = 0;
         for(int j = 0; j < MAXCOL; j++){
-            res1 = (res1 * (long long)131 % mod1 + a[i][j]) % mod1; 
-            res2 = (res2 * (long long)251 % mod2 + a[i][j]) % mod2;
+            res1 = (res1 * (long long)131 % mod1 + A[i][j]) % mod1; 
+            res2 = (res2 * (long long)251 % mod2 + A[i][j]) % mod2;
         }
         mp1[i] = res1;
         mp2[i] = res2;
     }
 
-    // int cnt1 = 0, cnt2 = 0;
+    *cnt1 = 0, *cnt2 = 0;
     for(int i = 0; i < MAXROW; i++){
         if(b[i][0] < '0' || b[i][0] > '9') break ;
         long long res1 = 0;
         long long res2 = 0;
         for(int j = 0; j < MAXCOL; j++){
-            res1 = (res1 * (long long)131 % mod1 + b[i][j]) % mod1; 
-            res2 = (res2 * (long long)251 % mod2 + b[i][j]) % mod2;
+            res1 = (res1 * (long long)131 % mod1 + B[i][j]) % mod1; 
+            res2 = (res2 * (long long)251 % mod2 + B[i][j]) % mod2;
         }
         for(int j = 0; j < MAXROW; j++){
             if(mp[j]){
@@ -119,6 +122,4 @@ void intersect_Row_char(char a[MAXROW][MAXCOL], char b[MAXROW][MAXCOL], int ii[M
         }
     }
 }
-
-
 
